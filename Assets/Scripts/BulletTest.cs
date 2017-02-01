@@ -31,7 +31,7 @@ public class BulletTest : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown("Fire1") && delay <= 0)
+		if (Input.GetButton("Fire1") && delay <= 0)
         {
             Debug.Log("Fire~~~");
             Fire();
