@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class FireBullet : MonoBehaviour {
 
-    public float firingSpeed = 0f; // The speed the bullet moves at once fired
+    public float firingSpeed; // The speed the bullet moves at once fired
     public float TTL = 5f; // Lifetime of the bullet once fired in seconds
 
     private Rigidbody rb;
+    private MeshRenderer rend;
     private bool firing = false;
 
     public void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
+        rend = gameObject.GetComponentInChildren<MeshRenderer>();
     }
 
     public void Fire()
@@ -21,7 +23,8 @@ public class FireBullet : MonoBehaviour {
         if (!firing)
         {
             firing = true;
-            rb.velocity = (transform.forward * firingSpeed);
+            rb.AddForce(transform.forward * firingSpeed);
+            rend.enabled = true;
             Destroy(gameObject, TTL);
         }
     }

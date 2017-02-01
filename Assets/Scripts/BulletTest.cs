@@ -25,7 +25,7 @@ public class BulletTest : MonoBehaviour {
         {
             fireDelay = 0.25f;
         }
-        currBullet = Instantiate(bullets,BulletPosition);
+        currBullet = CreateBullets();
     }
 
 	
@@ -42,9 +42,15 @@ public class BulletTest : MonoBehaviour {
         }
 	}
 
-    void Fire()
-    { 
+    void Fire() { 
         currBullet.GetComponent<FireBullet>().Fire();
         delay = fireDelay; //Reset the delay to next bullet firing
+        currBullet = CreateBullets();
+    }
+
+    GameObject CreateBullets()
+    {
+        GameObject bullet = Instantiate(bullets, BulletPosition.position, Quaternion.identity, BulletPosition);
+        return bullet;
     }
 }
